@@ -6,7 +6,7 @@ export function formatPrice(value) {
 export async function submitOrder({ product, name, phone }) {
   const { supabase } = await import('./supabaseClient')
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('orders')
     .insert([
       {
@@ -18,8 +18,6 @@ export async function submitOrder({ product, name, phone }) {
         status: 'new',
       },
     ])
-    .select()
-    .single()
 
   if (error) throw error
 
@@ -34,13 +32,10 @@ export async function submitOrder({ product, name, phone }) {
         price: product.price,
         customerName: name,
         customerPhone: phone,
-        orderId: data?.id,
       }),
     })
   } catch (e) {
     // Xabarnoma yuborilmasa ham, buyurtma bazaga saqlanган bo'ladi.
     console.warn('Telegram xabarnomasi yuborilmadi:', e)
   }
-
-  return data
 }
