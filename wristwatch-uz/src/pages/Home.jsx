@@ -27,10 +27,10 @@ export default function Home() {
   return (
     <div>
       {/* HERO */}
-      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-ink text-ivory px-5">
-        <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
+      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-ivory text-ink px-5">
+        <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
           <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, #D4B483 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #B08D57 1px, transparent 0)',
             backgroundSize: '32px 32px'
           }} />
         </div>
@@ -40,7 +40,7 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="absolute w-[500px] h-[500px] sm:w-[700px] sm:h-[700px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(176,141,87,0.15) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(176,141,87,0.18) 0%, transparent 70%)' }}
         />
 
         <div className="relative max-w-4xl mx-auto text-center">
@@ -48,7 +48,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xs sm:text-sm tracking-widest2 uppercase text-gold-light mb-6"
+            className="text-xs sm:text-sm tracking-widest2 uppercase text-gold-dark mb-6"
           >
             {t('hero.eyebrow')}
           </motion.p>
@@ -66,7 +66,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.6 }}
-            className="mt-7 text-base sm:text-lg text-ivory/60 max-w-xl mx-auto leading-relaxed"
+            className="mt-7 text-base sm:text-lg text-ink/60 max-w-xl mx-auto leading-relaxed"
           >
             {t('hero.subtitle')}
           </motion.p>
@@ -77,11 +77,26 @@ export default function Home() {
             transition={{ duration: 0.9, delay: 0.8 }}
             className="mt-10"
           >
-            <Link
-              to="/catalog"
-              className="inline-block border border-gold text-gold-light hover:bg-gold hover:text-ink transition-all duration-500 px-8 py-3.5 rounded-full text-sm tracking-widest2 uppercase"
-            >
-              {t('hero.cta')}
+            <Link to="/catalog" className="group relative inline-block">
+              <motion.span
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                className="relative inline-flex items-center gap-2 bg-ink text-ivory px-9 py-4 rounded-full text-sm tracking-widest2 uppercase shadow-lg shadow-gold/20 overflow-hidden"
+              >
+                <span
+                  className="absolute inset-0 bg-gradient-to-r from-gold-dark via-gold-light to-gold-dark opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{ backgroundSize: '200% auto' }}
+                />
+                <span className="relative group-hover:text-ink transition-colors duration-500">{t('hero.cta')}</span>
+                <motion.span
+                  className="relative group-hover:text-ink transition-colors duration-500"
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  →
+                </motion.span>
+              </motion.span>
             </Link>
           </motion.div>
         </div>
@@ -89,7 +104,7 @@ export default function Home() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-ivory/30 text-xs tracking-widest2 uppercase"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-ink/30 text-xs tracking-widest2 uppercase"
         >
           {t('hero.scroll')}
         </motion.div>
