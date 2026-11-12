@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: #FAF7F0;
+  color: #0E0D0B;
+}
+
+/* DIQQAT: `overflow-x: hidden` position:sticky ni buzadi (scroll-video bo'limi ishlamay qoladi).
+   `clip` esa gorizontal chiqib ketishni yashiradi, lekin sticky'ni saqlab qoladi. */
+body {
+  overflow-x: clip;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+}
+
+::selection {
+  background: #B08D57;
+  color: #FAF7F0;
+}
+
+/* Ingichka oltin scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #B08D57;
+  border-radius: 4px;
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid #B08D57;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.gold-gradient-text {
+  background: linear-gradient(90deg, #8A6D3F 0%, #D4B483 50%, #8A6D3F 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #B08D57, transparent);
+}
+
+/* ---- Qo'shimcha stillar ---- */
+:root {
+  color-scheme: light;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+img, video {
+  max-width: 100%;
+}
+
+/* Ticker (harakatlanuvchi yozuv) */
+@keyframes ww-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ww-marquee {
+  animation: ww-marquee 32s linear infinite;
+}
+.ww-marquee:hover {
+  animation-play-state: paused;
+}

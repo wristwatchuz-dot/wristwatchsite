@@ -1,0 +1,40 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Barcha sahifalar index.html ga yo'naltiriladi (React Router uchun).
+# Haqiqiy fayllar (video, rasm, funksiya) bu qoidadan ta'sirlanmaydi.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# ---- Xavfsizlik sarlavhalari ----
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+
+# Admin sahifasi qidiruv tizimlariga ko'rsatilmaydi
+[[headers]]
+  for = "/admin*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Tezlik uchun uzoq muddatli kesh
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.mp4"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
